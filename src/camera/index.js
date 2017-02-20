@@ -21,7 +21,7 @@ const captureImage = (opts, cb) => {
 			height: opts.height || null
 		}, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -44,7 +44,7 @@ const captureVideo = (opts, cb) => {
 			height: opts.height || null
 		}, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

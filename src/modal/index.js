@@ -8,7 +8,7 @@ __weex_define__('@weex-temp/x', (__weex_require__) => {
 
 const alert = (opts, cb) => {
 	return new Promise((resolve, reject) => {
-		if (typeof(opts) == 'string') {
+		if (typeof(opts) === 'string') {
 			opts = {
 				message: opts
 			}
@@ -38,7 +38,7 @@ const alert = (opts, cb) => {
 
 const confirm = (opts, cb) => {
 	return new Promise((resolve, reject) => {
-		if (typeof(opts) == 'string') {
+		if (typeof(opts) === 'string') {
 			opts = {
 				message: opts
 			}
@@ -69,7 +69,7 @@ const confirm = (opts, cb) => {
 
 const prompt = (opts, cb) => {
 	return new Promise((resolve, reject) => {
-		if (typeof(opts) == 'string') {
+		if (typeof(opts) === 'string') {
 			opts = {
 				message: opts
 			}
@@ -101,7 +101,7 @@ const prompt = (opts, cb) => {
 
 const toast = (opts, cb) => {
 	return new Promise((resolve, reject) => {
-		if (typeof(opts) == 'string') {
+		if (typeof(opts) === 'string') {
 			opts = {
 				message: opts
 			}

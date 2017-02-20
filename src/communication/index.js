@@ -58,7 +58,7 @@ const sms = (to, text, cb) => {
 			return
 		}
 
-		if (typeof(to) == 'string') {
+		if (typeof(to) === 'string') {
 			to = [to]
 		}
 
@@ -105,7 +105,7 @@ const mail = (to, opts, cb) => {
 			return
 		}
 
-		if (typeof(to) == 'string') {
+		if (typeof(to) === 'string') {
 			to = [to]
 		}
 
@@ -114,7 +114,7 @@ const mail = (to, opts, cb) => {
 				reject({
 					code: 103050,
 					message: 'MAIL_INVALID_ARGUMENT',
-					details: 'Invalid emaill address: ' + to[_i]
+					details: 'Invalid emaill address: ' + to[i]
 				})
 				return
 			}

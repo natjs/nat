@@ -10,11 +10,11 @@ const get = (opts, cb) => {
 		cb = opts
 		opts = {}
 	}
-	
+
 	return new Promise((resolve, reject) => {
 		geolocation.get((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -41,7 +41,7 @@ const watch = (opts, cb) => {
 			model: opts.model || 'highAccuracy'
 		}, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -59,7 +59,7 @@ const clearWatch = (cb) => {
 	return new Promise((resolve, reject) => {
 		geolocation.clearWatch((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

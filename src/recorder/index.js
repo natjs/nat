@@ -1,4 +1,4 @@
-var recorder
+let recorder
 
 __weex_define__('@weex-temp/x', (__weex_require__) => {
 	recorder = __weex_require__('@weex-module/nat/recorder')

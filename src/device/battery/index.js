@@ -10,7 +10,7 @@ const status = (cb) => {
 	return new Promise((resolve, reject) => {
 		battery.status((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

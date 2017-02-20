@@ -10,7 +10,7 @@ const get = (cb) => {
 	return new Promise((resolve, reject) => {
 		volume.get((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -28,7 +28,7 @@ const set = (vol, cb) => {
 	return new Promise((resolve, reject) => {
 		volume.set(vol, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

@@ -1,6 +1,6 @@
 {
   "name": "weex-nat",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Use Nat.js in Weex Project.",
   "main": "lib",
   "scripts": {

@@ -11,7 +11,7 @@ const brightness = {
 		return new Promise((resolve, reject) => {
 			screen.getBrightness((ret) => {
 				ret = ret || {}
-				
+
 				if (ret.error) {
 					reject(ret.error)
 					if (typeof cb === 'function') cb(ret.error, null)
@@ -27,7 +27,7 @@ const brightness = {
 		return new Promise((resolve, reject) => {
 			screen.setBrightness(brightness, (ret) => {
 				ret = ret || {}
-				
+
 				if (ret.error) {
 					reject(ret.error)
 					if (typeof cb === 'function') cb(ret.error, null)
@@ -43,11 +43,11 @@ const brightness = {
 // orientation
 
 const orientation = {
-	status: () => {
+	status: (cb) => {
 		return new Promise((resolve, reject) => {
 			screen.getOrientation((ret) => {
 				ret = ret || {}
-				
+
 				if (ret.error) {
 					reject(ret.error)
 					if (typeof cb === 'function') cb(ret.error, null)
@@ -81,7 +81,7 @@ const orientation = {
 		return new Promise((resolve, reject) => {
 			screen.lockOrientation(orientation, (ret) => {
 				ret = ret || {}
-				
+
 				if (ret.error) {
 					reject(ret.error)
 					if (typeof cb === 'function') cb(ret.error, null)
@@ -97,7 +97,7 @@ const orientation = {
 		return new Promise((resolve, reject) => {
 			screen.unlockOrientation((ret) => {
 				ret = ret || {}
-				
+
 				if (ret.error) {
 					reject(ret.error)
 					if (typeof cb === 'function') cb(ret.error, null)
@@ -116,7 +116,7 @@ const info = (cb) => {
 	return new Promise((resolve, reject) => {
 		screen.info((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

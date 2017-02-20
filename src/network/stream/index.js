@@ -89,16 +89,17 @@ const fetch = (url, opts, cb) => {
 			} else {
 				if (ret.ok && typeof ret.data === 'string') {
 					switch (opts.type) {
-						case 'json':
-							ret.data = JSON.parse(ret.data)
-							break
+					case 'json':
+						ret.data = JSON.parse(ret.data)
+						break
 
-						case 'jsonp':
-							let matched = ret.data.match(/^\s*?.*\((.*)\)\s*?$/)
-							if (matched) {
-								ret.data = JSON.parse(matched[1])
-							}
-							break
+					case 'jsonp': {
+						let matched = ret.data.match(/^\s*?.*\((.*)\)\s*?$/)
+						if (matched) {
+							ret.data = JSON.parse(matched[1])
+						}
+						break
+					}
 					}
 				}
 				resolve(ret)

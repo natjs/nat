@@ -10,11 +10,11 @@ const get = (opts, cb) => {
 		cb = opts
 		opts = {}
 	}
-	
+
 	return new Promise((resolve, reject) => {
 		accelerometer.get((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -39,7 +39,7 @@ const watch = (opts, cb) => {
 			interval: opts.interval || 100
 		}, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)
@@ -57,7 +57,7 @@ const clearWatch = (cb) => {
 	return new Promise((resolve, reject) => {
 		accelerometer.clearWatch((ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

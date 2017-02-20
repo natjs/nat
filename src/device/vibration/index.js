@@ -11,11 +11,11 @@ const vibrate = (time, cb) => {
 		cb = time
 		time = {}
 	}
-	
+
 	return new Promise((resolve, reject) => {
 		vibration.vibrate(time || 500, (ret) => {
 			ret = ret || {}
-			
+
 			if (ret.error) {
 				reject(ret.error)
 				if (typeof cb === 'function') cb(ret.error, null)

@@ -5,7 +5,7 @@ __weex_define__('@weex-temp/x', (__weex_require__) => {
 })
 
 // play
-const play = (path) => {
+const play = (path, cb) => {
 	return new Promise((resolve, reject) => {
 		if (!path) {
 			reject({
@@ -31,7 +31,7 @@ const play = (path) => {
 
 // pause
 
-const pause = () => {
+const pause = (cb) => {
 	return new Promise((resolve, reject) => {
 		video.pause((ret) => {
 			ret = ret || {}
@@ -49,7 +49,7 @@ const pause = () => {
 
 // stop
 
-const stop = () => {
+const stop = (cb) => {
 	return new Promise((resolve, reject) => {
 		video.stop((ret) => {
 			ret = ret || {}

@@ -55,7 +55,7 @@ const preview = (files, opts, cb) => {
 			return
 		}
 
-		if (typeof(files) == 'string') {
+		if (typeof(files) === 'string') {
 			files = [files]
 		}
 
