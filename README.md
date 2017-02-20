@@ -24,7 +24,7 @@ import 'Nat' from 'weex-nat'
 Nat.call('415-736-0000')
 
 // take a photo
-Nat.camera.captureImage(ret => {
+Nat.camera.captureImage((err, ret) => {
     console.log('Path: ', ret.path)
 })
 
