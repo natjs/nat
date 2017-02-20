@@ -1,15 +1,24 @@
 {
-  "name": "nat",
-  "version": "0.0.1",
-  "description": "",
+  "name": "weex-nat",
+  "version": "0.0.2",
+  "description": "Use Nat.js in Weex Project.",
   "main": "lib",
   "scripts": {
     "build": "babel src -d lib",
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "nat"
+    "nat",
+    "weex",
+    "weex-nat",
+    "native",
+    "bridge"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/natjs/weex-nat.git"
+  },
   "author": "Acathur",
   "license": "MIT",
   "devDependencies": {
