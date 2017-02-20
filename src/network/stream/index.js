@@ -1,0 +1,113 @@
+let stream
+
+__weex_define__('@weex-temp/x', (__weex_require__) => {
+	stream = __weex_require__('@weex-module/nat/network/stream')
+})
+
+// fetch
+
+const fetch = (url, opts, cb) => {
+	return new Promise((resolve, reject) => {
+		if (!url) {
+			reject({
+				code: 151040,
+				message: 'FETCH_MISSING_ARGUMENT'
+			})
+			return
+		}
+
+		if (typeof url === 'object') {
+			cb = opts
+			opts = url
+		} else if (typeof opts === 'function') {
+			cb = opts
+			opts = {
+				url
+			}
+		} else {
+			opts = opts || {}
+			opts.url = url
+		}
+
+		// headers
+		opts.headers = opts.headers || {}
+
+		if (opts.headers['Content-Type'] && /application\/json/.test(opts.headers['Content-Type'])) {
+			opts.type = 'json'
+		}
+
+		// method
+		opts.method = (opts.method) ? opts.method.toUpperCase() : 'GET'
+
+		if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'].indexOf(opts.method) < 0) {
+			reject({
+				code: 151050,
+				message: 'FETCH_INVALID_ARGUMENT',
+				details: 'Unsupported request method'
+			})
+			return
+		}
+
+		// type
+		opts.type = (opts.type) ? opts.type.toLowerCase() : 'json'
+
+		if (['json', 'jsonp', 'text'].indexOf(opts.type) < 0) {
+			reject({
+				code: 151050,
+				message: 'FETCH_INVALID_ARGUMENT',
+				details: 'Unsupported request type'
+			})
+			return
+		}
+
+		// body
+		if (typeof opts.body === 'object') {
+			if (opts.type === 'json' && opts.method !== 'GET') {
+				opts.body = JSON.stringify(opts.body)
+			} else {
+				reject({
+					code: 151050,
+					message: 'FETCH_INVALID_ARGUMENT',
+					details: 'Request body must be a string'
+				})
+				return
+			}
+		}
+
+		stream.fetch({
+			method: opts.method,
+			url: opts.url,
+			headers: opts.headers,
+			type: opts.type,
+			body: opts.body
+		}, (ret) => {
+			ret = ret || {}
+
+			if (ret.error) {
+				reject(ret.error)
+				if (typeof cb === 'function') cb(ret.error, null)
+			} else {
+				if (ret.ok && typeof ret.data === 'string') {
+					switch (opts.type) {
+						case 'json':
+							ret.data = JSON.parse(ret.data)
+							break
+
+						case 'jsonp':
+							let matched = ret.data.match(/^\s*?.*\((.*)\)\s*?$/)
+							if (matched) {
+								ret.data = JSON.parse(matched[1])
+							}
+							break
+					}
+				}
+				resolve(ret)
+				if (typeof cb === 'function') cb(null, ret)
+			}
+		})
+	})
+}
+
+module.exports = {
+	fetch
+}
