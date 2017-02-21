@@ -1,14 +1,24 @@
 # Weex Nat
 
+[![npm](https://badge.fury.io/js/weex-nat.svg)](https://www.npmjs.com/package/weex-nat)
+[![license](https://img.shields.io/npm/l/weex-nat.svg)](https://www.npmjs.com/package/weex-nat)
+
+Next generation mobile framework for building native / hybrid apps.
+
+## Links
+
+- [Documentation](http://natjs.com/)
+- [Github](https://github.com/natjs/)
+
 ## Installation
 
-```
+```bash
 npm install weex-nat --save
 ```
 
 add nat moudles you need from weex plugin market
 
-```
+```bash
 weexpack plugin add [nat moudle you need]
 ```
 
@@ -34,6 +44,7 @@ Nat.camera.captureImage((err, ret) => {
 ```
 
 ## Modules
+
 - camera
 - communication
 - geolocation
@@ -44,5 +55,12 @@ Nat.camera.captureImage((err, ret) => {
 - sensor
 - device
 
-## Resources
-- [Documentation](http://natjs.com/)
+## Supported Platforms
+
+- Android
+- iOS
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
