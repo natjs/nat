@@ -1,7 +1,7 @@
-# Weex Nat
+# Nat.js
 
-[![npm](https://badge.fury.io/js/weex-nat.svg)](https://www.npmjs.com/package/weex-nat)
-[![license](https://img.shields.io/npm/l/weex-nat.svg)](https://www.npmjs.com/package/weex-nat)
+[![npm](https://badge.fury.io/js/natjs.svg)](https://www.npmjs.com/package/natjs)
+[![license](https://img.shields.io/npm/l/natjs.svg)](https://www.npmjs.com/package/natjs)
 
 Next generation mobile framework for building native / hybrid apps.
 
@@ -13,7 +13,7 @@ Next generation mobile framework for building native / hybrid apps.
 ## Installation
 
 ```bash
-npm install weex-nat --save
+npm install natjs --save
 ```
 
 add nat moudles you need from weex plugin market
@@ -28,7 +28,7 @@ Use Nat in weex file (.we)
 
 ```html
 <script>
-import 'Nat' from 'weex-nat'
+import 'Nat' from 'natjs'
 
 // make a phone call
 Nat.call('415-736-0000')

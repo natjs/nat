@@ -1,7 +1,7 @@
 {
-  "name": "weex-nat",
-  "version": "0.0.3",
-  "description": "Use Nat.js in Weex Project.",
+  "name": "natjs",
+  "version": "0.0.4",
+  "description": "Next generation mobile framework for building native / hybrid apps.",
   "main": "lib",
   "scripts": {
     "build": "babel src -d lib",
@@ -10,14 +10,20 @@
   },
   "keywords": [
     "nat",
+    "natjs",
+    "nat.js",
+    "native",
+    "vue",
     "weex",
     "weex-nat",
-    "native",
+    "hybrid",
+    "app",
+    "mobile",
     "bridge"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/natjs/weex-nat.git"
+    "url": "https://github.com/natjs/nat.git"
   },
   "author": "Acathur",
   "license": "MIT",
