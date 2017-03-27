@@ -19,7 +19,7 @@ npm install natjs --save
 add nat moudles you need from weex plugin market
 
 ```bash
-weexpack plugin add [nat moudle you need]
+weexpack plugin add [nat moudle]
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Use Nat in weex file (.we)
 
 ```html
 <script>
-import 'Nat' from 'natjs'
+import Nat from 'natjs'
 
 // make a phone call
 Nat.call('415-736-0000')
@@ -37,8 +37,6 @@ Nat.call('415-736-0000')
 Nat.camera.captureImage((err, ret) => {
     console.log('Path: ', ret.path)
 })
-
-// more...
 
 </script>
 ```
