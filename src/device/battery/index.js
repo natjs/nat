@@ -1,8 +1,12 @@
 let battery
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	battery = __weex_require__('@weex-module/nat/device/battery')
-})
+if (weex && weex.requireModule) {
+	battery = weex.requireModule('nat/device/battery')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		battery = __weex_require__('@weex-module/nat/device/battery')
+	})
+}
 
 // status
 

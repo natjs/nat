@@ -1,8 +1,12 @@
 let compass
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	compass = __weex_require__('@weex-module/nat/sensor/compass')
-})
+if (weex && weex.requireModule) {
+	compass = weex.requireModule('nat/sensor/compass')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		compass = __weex_require__('@weex-module/nat/sensor/compass')
+	})
+}
 
 // get
 const get = (opts, cb) => {

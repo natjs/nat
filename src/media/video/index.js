@@ -1,8 +1,12 @@
 let video
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	video = __weex_require__('@weex-module/nat/media/video')
-})
+if (weex && weex.requireModule) {
+	video = weex.requireModule('nat/media/video')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		video = __weex_require__('@weex-module/nat/media/video')
+	})
+}
 
 // play
 const play = (path, cb) => {

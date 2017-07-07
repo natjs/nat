@@ -1,8 +1,12 @@
 let screen
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	screen = __weex_require__('@weex-module/nat/device/screen')
-})
+if (weex && weex.requireModule) {
+	screen = weex.requireModule('nat/device/screen')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		screen = __weex_require__('@weex-module/nat/device/screen')
+	})
+}
 
 // brightness
 

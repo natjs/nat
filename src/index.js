@@ -1,6 +1,6 @@
 let Nat = {}
 
-if (typeof(__weex_define__) === 'function') {
+if ((weex && weex.requireModule) || typeof(__weex_define__) === 'function') {
 	const camera = require('./camera')
 	const communication = require('./communication')
 	const geolocation = require('./geolocation')

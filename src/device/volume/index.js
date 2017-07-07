@@ -1,8 +1,12 @@
 let volume
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	volume = __weex_require__('@weex-module/nat/device/volume')
-})
+if (weex && weex.requireModule) {
+	volume = weex.requireModule('nat/device/volume')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		volume = __weex_require__('@weex-module/nat/device/volume')
+	})
+}
 
 // get
 

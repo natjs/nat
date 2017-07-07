@@ -2,9 +2,13 @@ import utils from '../utils'
 
 let communication
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	communication = __weex_require__('@weex-module/nat/communication')
-})
+if (weex && weex.requireModule) {
+	communication = weex.requireModule('nat/communication')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		communication = __weex_require__('@weex-module/nat/communication')
+	})
+}
 
 // call
 

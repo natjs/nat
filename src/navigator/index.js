@@ -1,8 +1,12 @@
 let navigator
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	navigator = __weex_require__('@weex-module/nat/navigator')
-})
+if (weex && weex.requireModule) {
+	navigator = weex.requireModule('nat/navigator')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		navigator = __weex_require__('@weex-module/nat/navigator')
+	})
+}
 
 // push
 

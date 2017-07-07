@@ -1,8 +1,12 @@
 let recorder
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	recorder = __weex_require__('@weex-module/nat/recorder')
-})
+if (weex && weex.requireModule) {
+	recorder = weex.requireModule('nat/recorder')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		recorder = __weex_require__('@weex-module/nat/recorder')
+	})
+}
 
 // start
 const start = (opts, cb) => {

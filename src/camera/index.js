@@ -1,8 +1,12 @@
 let camera
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	camera = __weex_require__('@weex-module/nat/camera')
-})
+if (weex && weex.requireModule) {
+	camera = weex.requireModule('nat/camera')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		camera = __weex_require__('@weex-module/nat/camera')
+	})
+}
 
 // launch
 

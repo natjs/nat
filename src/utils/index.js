@@ -9,7 +9,7 @@ const isPhone = (str) => {
 		return false
 	}
 
-	return !!str.match(/^\+?[\d\-\#\*\.\(\)]+$/)
+	return /^\+?[\d\-\#\*\.\(\)]+$/.test(str)
 }
 
 const isEmail = (str) => {
@@ -17,7 +17,7 @@ const isEmail = (str) => {
 		return false
 	}
 
-	return !!str.match(/^(\w)+([\.\-\_]\w+)*@(\w)+(([\.\-\_]\w+)+)$/)
+	return /^(\w)+([\.\-\_]\w+)*@(\w)+(([\.\-\_]\w+)+)$/.test(str)
 }
 
 module.exports = {

@@ -1,8 +1,12 @@
 let image
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	image = __weex_require__('@weex-module/nat/media/image')
-})
+if (weex && weex.requireModule) {
+	image = weex.requireModule('nat/media/image')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		image = __weex_require__('@weex-module/nat/media/image')
+	})
+}
 
 // pick
 const pick = (opts, cb) => {

@@ -1,8 +1,12 @@
 let network
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	network = __weex_require__('@weex-module/nat/device/network')
-})
+if (weex && weex.requireModule) {
+	network = weex.requireModule('nat/device/network')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		network = __weex_require__('@weex-module/nat/device/network')
+	})
+}
 
 // status
 

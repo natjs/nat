@@ -1,8 +1,12 @@
 let accelerometer
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	accelerometer = __weex_require__('@weex-module/nat/sensor/accelerometer')
-})
+if (weex && weex.requireModule) {
+	accelerometer = weex.requireModule('nat/sensor/accelerometer')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		accelerometer = __weex_require__('@weex-module/nat/sensor/accelerometer')
+	})
+}
 
 // get
 const get = (opts, cb) => {

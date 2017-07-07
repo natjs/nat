@@ -52,6 +52,7 @@
     },
     "globals": {
         "module": true,
+        "weex": true,
         "__weex_define__": true,
         "__weex_require__": true
     }

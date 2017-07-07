@@ -1,8 +1,12 @@
 let vibration
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	vibration = __weex_require__('@weex-module/nat/device/vibration')
-})
+if (weex && weex.requireModule) {
+	vibration = weex.requireModule('nat/device/vibration')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		vibration = __weex_require__('@weex-module/nat/device/vibration')
+	})
+}
 
 // vibrate
 

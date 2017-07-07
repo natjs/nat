@@ -1,8 +1,12 @@
 let audio
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	audio = __weex_require__('@weex-module/nat/media/audio')
-})
+if (weex && weex.requireModule) {
+	audio = weex.requireModule('nat/media/audio')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		audio = __weex_require__('@weex-module/nat/media/audio')
+	})
+}
 
 // play
 const play = (path, cb) => {

@@ -1,8 +1,12 @@
 let geolocation
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	geolocation = __weex_require__('@weex-module/nat/geolocation')
-})
+if (weex && weex.requireModule) {
+	geolocation = weex.requireModule('nat/geolocation')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		geolocation = __weex_require__('@weex-module/nat/geolocation')
+	})
+}
 
 // get
 const get = (opts, cb) => {

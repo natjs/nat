@@ -1,8 +1,12 @@
 let transfer
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	transfer = __weex_require__('@weex-module/nat/network/transfer')
-})
+if (weex && weex.requireModule) {
+	transfer = weex.requireModule('nat/network/transfer')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		transfer = __weex_require__('@weex-module/nat/network/transfer')
+	})
+}
 
 // download
 

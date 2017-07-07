@@ -1,8 +1,12 @@
 let modal
 
-__weex_define__('@weex-temp/x', (__weex_require__) => {
-	modal = __weex_require__('@weex-module/nat/modal')
-})
+if (weex && weex.requireModule) {
+	modal = weex.requireModule('nat/modal')
+} else if (typeof(__weex_define__) === 'function') {
+	__weex_define__('@weex-temp/x', (__weex_require__) => {
+		modal = __weex_require__('@weex-module/nat/modal')
+	})
+}
 
 // alert
 
