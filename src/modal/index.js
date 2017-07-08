@@ -56,7 +56,11 @@ const confirm = (opts, cb) => {
 			okButton: opts.okButton || 'OK',
 			cancelButton: opts.cancelButton || 'Cancel'
 		}, (ret) => {
-			ret = ret || {}
+			if (typeof(ret) === 'undefined') {
+				ret = {
+					error: 'unknow error, please report to natjs team'
+				}
+			}
 
 			if (ret.error) {
 				reject(ret.error)
