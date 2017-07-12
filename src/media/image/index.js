@@ -25,8 +25,13 @@ const pick = (opts, cb) => {
 			limit: opts.limit,
 			quality: opts.quality,
 			width: opts.width || null,
-			height: opts.height || null
+			height: opts.height || null,
+			showCamera: opts.showCamera || false
 		}, (ret) => {
+			if (ret === null) {
+				return
+			}
+
 			ret = ret || {}
 
 			if (ret.error) {
