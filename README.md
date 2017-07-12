@@ -9,7 +9,6 @@ Next generation mobile framework for building native / hybrid apps.
 
 - [Documentation](http://natjs.com/)
 - [Github](https://github.com/natjs/)
-- [Android Usage Notice](https://github.com/natjs/nat/blob/master/ANDROID_NOTICE.md)
 
 ## Installation
 
