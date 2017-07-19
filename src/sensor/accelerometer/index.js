@@ -40,7 +40,7 @@ const watch = (opts, cb) => {
 
 	return new Promise((resolve, reject) => {
 		accelerometer.watch({
-			interval: opts.interval || 100
+			interval: opts.interval || 32
 		}, (ret) => {
 			ret = ret || {}
 

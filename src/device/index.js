@@ -1,4 +1,4 @@
-import base from './base'
+import info from './info'
 import battery from './battery'
 import network from './network'
 import screen from './screen'
@@ -6,7 +6,7 @@ import vibration from './vibration'
 import volume from './volume'
 
 module.exports = {
-	base,
+	info,
 	battery,
 	network,
 	screen,

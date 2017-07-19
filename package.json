@@ -1,6 +1,6 @@
 {
   "name": "natjs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Next generation mobile framework for building native / hybrid apps.",
   "main": "lib",
   "scripts": {

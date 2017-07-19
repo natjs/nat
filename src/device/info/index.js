@@ -1,10 +1,10 @@
 let device
 
 if (weex && weex.requireModule) {
-	device = weex.requireModule('nat/device/base')
+	device = weex.requireModule('nat/device/info')
 } else if (typeof(__weex_define__) === 'function') {
 	__weex_define__('@weex-temp/x', (__weex_require__) => {
-		device = __weex_require__('@weex-module/nat/device/base')
+		device = __weex_require__('@weex-module/nat/device/info')
 	})
 }
 

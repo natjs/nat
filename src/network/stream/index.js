@@ -1,10 +1,10 @@
 let stream
 
 if (weex && weex.requireModule) {
-	stream = weex.requireModule('nat/network/stream')
+	stream = weex.requireModule('nat/stream')
 } else if (typeof(__weex_define__) === 'function') {
 	__weex_define__('@weex-temp/x', (__weex_require__) => {
-		stream = __weex_require__('@weex-module/nat/network/stream')
+		stream = __weex_require__('@weex-module/nat/stream')
 	})
 }
 

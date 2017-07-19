@@ -1,10 +1,10 @@
 let transfer
 
 if (weex && weex.requireModule) {
-	transfer = weex.requireModule('nat/network/transfer')
+	transfer = weex.requireModule('nat/transfer')
 } else if (typeof(__weex_define__) === 'function') {
 	__weex_define__('@weex-temp/x', (__weex_require__) => {
-		transfer = __weex_require__('@weex-module/nat/network/transfer')
+		transfer = __weex_require__('@weex-module/nat/transfer')
 	})
 }
 
@@ -47,6 +47,7 @@ const download = (url, opts, hooks, cb) => {
 			headers: opts.headers || {},
 			target: opts.target
 		}, (ret) => {
+			console.log('[nat]', ret)
 			ret = ret || {}
 
 			if (ret.error) {
@@ -128,6 +129,7 @@ const upload = (url, opts, hooks, cb) => {
 			formData: opts.formData || {},
 			mimeType: opts.mimeType
 		}, (ret) => {
+			console.log('[nat]', ret)
 			ret = ret || {}
 
 			if (ret.error) {
