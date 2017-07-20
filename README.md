@@ -7,8 +7,11 @@ Next generation mobile framework for building native / hybrid apps.
 
 ## Links
 
-- [Documentation](http://natjs.com/)
 - [Github](https://github.com/natjs/)
+- [Issues](https://github.com/natjs/nat/issues)
+
+## Documentation
+To check out docs and examples, visit [natjs.com](http://natjs.com/).
 
 ## Installation
 
@@ -16,7 +19,7 @@ Next generation mobile framework for building native / hybrid apps.
 npm install natjs --save
 ```
 
-add nat moudles you need from weex plugin market
+Add nat moudles you need from weex plugin market
 
 ```bash
 weexpack plugin add [nat moudle]
@@ -24,18 +27,23 @@ weexpack plugin add [nat moudle]
 
 ## Usage
 
-Use Nat in weex file (.we)
+Use Nat in vue/weex file (`.vue`/`.we`)
 
 ```html
 <script>
 import Nat from 'natjs'
 
-// make a phone call
+// Make a phone call
 Nat.call('415-736-0000')
 
-// take a photo
+// Take a photo
 Nat.camera.captureImage((err, ret) => {
     console.log('Path: ', ret.path)
+})
+
+// Get device info
+Nat.device.info((err, ret) => {
+    console.log('Info: ', ret)
 })
 
 </script>
@@ -47,11 +55,23 @@ Nat.camera.captureImage((err, ret) => {
 - communication
 - geolocation
 - media
+    - image
+    - audio
+    - video
 - modal
 - recorder
-- network
+- steam
+- transfer
 - sensor
+    - accelerometer
+    - compass
 - device
+    - info
+    - network
+    - vibration
+    - screen
+    - volume
+    - battery
 
 ## Supported Platforms
 
