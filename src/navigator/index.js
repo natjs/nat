@@ -51,6 +51,34 @@ const pop = (opts, cb) => {
 	})
 }
 
+// popToRoot
+const popToRoot = (opts, cb) => {
+	opts = opts || {
+		animated: true
+	}
+
+	if (typeof opts === 'function') {
+		cb = opts
+		opts = {
+			animated: true
+		}
+	}
+
+	return new Promise((resolve, reject) => {
+		navigator.popToRoot(opts, (ret) => {
+			ret = ret || {}
+
+			if (ret.error) {
+				reject(ret.error)
+				if (typeof cb === 'function') cb(ret.error, null)
+			} else {
+				resolve(ret)
+				if (typeof cb === 'function') cb(null, ret)
+			}
+		})
+	})
+}
+
 // setTitle
 const setTitle = (opts, cb) => {
 	opts = opts || {}
@@ -207,6 +235,7 @@ const show = (cb) => {
 module.exports = {
 	push,
 	pop,
+	popToRoot,
 	setTitle,
 	setColor,
 	setBackgroundColor,
