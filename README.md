@@ -15,6 +15,8 @@ Next generation mobile framework for building native / hybrid apps.
 To check out docs and examples, visit [natjs.com](http://natjs.com/).
 
 ## Nat Explorer
+<img src="http://natjs.com/_assets/images/nat_screen_view.png" width="720" style="max-width: 720px; margin: -4% 0 0 -9%;">
+
 Nat Explorer is a nat example app, help you explore Nat modules instantly. [Source Code](https://github.com/natjs/nat-explorer)
 
 [![Available on App Store](http://natjs.com/_assets/images/btn_app_store.svg)](https://itunes.apple.com/us/app/nat-explorer/id1262312650)
@@ -84,6 +86,8 @@ Nat.device.info((err, ret) => {
     - screen
     - volume
     - battery
+- third-party
+    - alipay
 
 ## Supported Platforms
 
