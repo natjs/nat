@@ -10,8 +10,8 @@ if ((weex && weex.requireModule) || typeof(__weex_define__) === 'function') {
 	const network = require('./network')
 	const sensor = require('./sensor')
 	const device = require('./device')
+	const Navigator = require('./navigator')
 	const alipay = require('./third-party/alipay')
-	const navigator = require('./navigator')
 
 	// camera
 	if (camera) {
@@ -75,8 +75,8 @@ if ((weex && weex.requireModule) || typeof(__weex_define__) === 'function') {
 	}
 
 	// navigator
-	if (navigator) {
-		Nat.navigator = navigator
+	if (Navigator) {
+		Nat.navigator = Navigator
 	}
 
 	// alipay

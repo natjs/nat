@@ -1,3 +1,5 @@
+import { isNative } from '../utils'
+
 let modal
 
 if (weex && weex.requireModule) {
@@ -7,10 +9,9 @@ if (weex && weex.requireModule) {
 		modal = __weex_require__('@weex-module/nat/modal')
 	})
 }
-
 // alert
 
-const alert = (opts, cb) => {
+const Alert = (opts, cb) => {
 	return new Promise((resolve, reject) => {
 		if (typeof(opts) === 'string') {
 			opts = {
@@ -20,27 +21,32 @@ const alert = (opts, cb) => {
 
 		opts = opts || {}
 
-		modal.alert({
-			title: opts.title || '',
-			message: opts.message || '',
-			okButton: opts.okButton || 'OK'
-		}, (ret) => {
-			ret = ret || {}
+		if (isNative) {
+			modal.alert({
+				title: opts.title || '',
+				message: opts.message || '',
+				okButton: opts.okButton || 'OK'
+			}, (ret) => {
+				ret = ret || {}
 
-			if (ret.error) {
-				reject(ret.error)
-				if (typeof cb === 'function') cb(ret.error, null)
-			} else {
-				resolve()
-				if (typeof cb === 'function') cb(null)
-			}
-		})
+				if (ret.error) {
+					reject(ret.error)
+					if (typeof cb === 'function') cb(ret.error, null)
+				} else {
+					resolve()
+					if (typeof cb === 'function') cb(null)
+				}
+			})
+		} else {
+			window.alert(opts.message)
+			resolve()
+		}
 	})
 }
 
 // confirm
 
-const confirm = (opts, cb) => {
+const Confirm = (opts, cb) => {
 	return new Promise((resolve, reject) => {
 		if (typeof(opts) === 'string') {
 			opts = {
@@ -50,32 +56,37 @@ const confirm = (opts, cb) => {
 
 		opts = opts || {}
 
-		modal.confirm({
-			title: opts.title || '',
-			message: opts.message || '',
-			okButton: opts.okButton || 'OK',
-			cancelButton: opts.cancelButton || 'Cancel'
-		}, (ret) => {
-			if (typeof(ret) === 'undefined') {
-				ret = {
-					error: 'unknow error, please report to natjs team'
+		if (isNative) {
+			modal.confirm({
+				title: opts.title || '',
+				message: opts.message || '',
+				okButton: opts.okButton || 'OK',
+				cancelButton: opts.cancelButton || 'Cancel'
+			}, (ret) => {
+				if (typeof(ret) === 'undefined') {
+					ret = {
+						error: 'unknow error, please report to natjs team'
+					}
 				}
-			}
 
-			if (ret.error) {
-				reject(ret.error)
-				if (typeof cb === 'function') cb(ret.error, null)
-			} else {
-				resolve(ret)
-				if (typeof cb === 'function') cb(null, ret)
-			}
-		})
+				if (ret.error) {
+					reject(ret.error)
+					if (typeof cb === 'function') cb(ret.error, null)
+				} else {
+					resolve(ret)
+					if (typeof cb === 'function') cb(null, ret)
+				}
+			})
+		} else {
+			const c = window.confirm(opts.message)
+			resolve(c)
+		}
 	})
 }
 
 // prompt
 
-const prompt = (opts, cb) => {
+const Prompt = (opts, cb) => {
 	return new Promise((resolve, reject) => {
 		if (typeof(opts) === 'string') {
 			opts = {
@@ -85,29 +96,38 @@ const prompt = (opts, cb) => {
 
 		opts = opts || {}
 
-		modal.prompt({
-			title: opts.title || '',
-			message: opts.message || '',
-			text: opts.text || '',
-			okButton: opts.okButton || 'OK',
-			cancelButton: opts.cancelButton || 'Cancel'
-		}, (ret) => {
-			ret = ret || {}
+		if (isNative) {
+			modal.prompt({
+				title: opts.title || '',
+				message: opts.message || '',
+				text: opts.text || '',
+				okButton: opts.okButton || 'OK',
+				cancelButton: opts.cancelButton || 'Cancel'
+			}, (ret) => {
+				ret = ret || {}
 
-			if (ret.error) {
-				reject(ret.error)
-				if (typeof cb === 'function') cb(ret.error, null)
-			} else {
-				resolve(ret)
-				if (typeof cb === 'function') cb(null, ret)
-			}
-		})
+				if (ret.error) {
+					reject(ret.error)
+					if (typeof cb === 'function') cb(ret.error, null)
+				} else {
+					resolve(ret)
+					if (typeof cb === 'function') cb(null, ret)
+				}
+			})
+		} else {
+			const p = window.prompt(opts.message || '', opts.text || '')
+
+			resolve({
+				result: p && p.length,
+				data: p
+			})
+		}
 	})
 }
 
 // toast
 
-const toast = (opts, cb) => {
+const Toast = (opts, cb) => {
 	return new Promise((resolve, reject) => {
 		if (typeof(opts) === 'string') {
 			opts = {
@@ -122,27 +142,32 @@ const toast = (opts, cb) => {
 			opts.position = 'bottom'
 		}
 
-		modal.toast({
-			message: opts.message || '',
-			duration: opts.duration || 3000,
-			position: opts.position
-		}, (ret) => {
-			ret = ret || {}
+		if (isNative) {
+			modal.toast({
+				message: opts.message || '',
+				duration: opts.duration || 3000,
+				position: opts.position
+			}, (ret) => {
+				ret = ret || {}
 
-			if (ret.error) {
-				reject(ret.error)
-				if (typeof cb === 'function') cb(ret.error, null)
-			} else {
-				resolve()
-				if (typeof cb === 'function') cb(null)
-			}
-		})
+				if (ret.error) {
+					reject(ret.error)
+					if (typeof cb === 'function') cb(ret.error, null)
+				} else {
+					resolve()
+					if (typeof cb === 'function') cb(null)
+				}
+			})
+		} else {
+			window.alert(opts.message)
+			resolve()
+		}
 	})
 }
 
 module.exports = {
-	alert,
-	confirm,
-	prompt,
-	toast
+	alert: Alert,
+	confirm: Confirm,
+	prompt: Prompt,
+	toast: Toast
 }

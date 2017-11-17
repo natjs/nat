@@ -1,3 +1,5 @@
+import { isNative } from '../../utils'
+
 let stream
 
 if (weex && weex.requireModule) {
@@ -10,7 +12,7 @@ if (weex && weex.requireModule) {
 
 // fetch
 
-const fetch = (url, opts, cb) => {
+const Fetch = (url, opts, cb) => {
 	return new Promise((resolve, reject) => {
 		if (!url) {
 			reject({
@@ -78,41 +80,90 @@ const fetch = (url, opts, cb) => {
 			}
 		}
 
-		stream.fetch({
+		opts = {
 			method: opts.method,
 			url: opts.url,
 			headers: opts.headers,
 			type: opts.type,
 			body: opts.body
-		}, (ret) => {
-			ret = ret || {}
+		}
 
-			if (ret.error) {
-				reject(ret.error)
-				if (typeof cb === 'function') cb(ret.error, null)
-			} else {
-				if (ret.ok && typeof ret.data === 'string') {
-					switch (opts.type) {
-					case 'json':
-						ret.data = JSON.parse(ret.data)
-						break
+		if (isNative) {
+			stream.fetch(opts, (ret) => {
+				ret = ret || {}
 
-					case 'jsonp': {
-						let matched = ret.data.match(/^\s*?.*\((.*)\)\s*?$/)
-						if (matched) {
-							ret.data = JSON.parse(matched[1])
+				if (ret.error) {
+					reject(ret.error)
+					if (typeof cb === 'function') cb(ret.error, null)
+				} else {
+					if (ret.ok && typeof ret.data === 'string') {
+						switch (opts.type) {
+						case 'json':
+							ret.data = JSON.parse(ret.data)
+							break
+
+						case 'jsonp': {
+							const matched = ret.data.match(/^\s*?.*\((.*)\)\s*?$/)
+							if (matched) {
+								ret.data = JSON.parse(matched[1])
+							}
+							break
 						}
-						break
+						}
 					}
+					resolve(ret)
+					if (typeof cb === 'function') cb(null, ret)
+				}
+			})
+		} else {
+			const url = opts.url
+			delete opts.url
+
+			let _res = {}
+
+			window.fetch(url, opts)
+			.then((res) => {
+				_res = res
+
+				if (res.ok) {
+					if (res.status === 204) {
+						return null
+					} else {
+						if (opts.type === 'json') {
+							return res.json()
+						} else {
+							return res.text()
+						}
+					}
+				} else {
+					throw new Error(res.statusText)
+				}
+			})
+			.then((data) => {
+				if (opts.type === 'jsonp') {
+					const matched = data.match(/^\s*?.*\((.*)\)\s*?$/)
+					if (matched) {
+						data = JSON.parse(matched[1])
 					}
 				}
-				resolve(ret)
-				if (typeof cb === 'function') cb(null, ret)
-			}
-		})
+
+				resolve({
+					data,
+					headers: _res.headers,
+					ok: _res.ok,
+					redirected: _res.redirected,
+					status: _res.status,
+					statusText: _res.statusText
+				})
+			})
+			.catch((e) => {
+				reject(e)
+				if (typeof cb === 'function') cb(e, null)
+			})
+		}
 	})
 }
 
 module.exports = {
-	fetch
+	fetch: Fetch
 }

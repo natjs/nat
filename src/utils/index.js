@@ -1,3 +1,5 @@
+const isNative = typeof window !== 'object'
+
 const isFn = (fn) => {
 	return typeof fn === 'function'
 }
@@ -21,6 +23,7 @@ const isEmail = (str) => {
 }
 
 module.exports = {
+	isNative,
 	isFn,
 	isPhone,
 	isEmail
