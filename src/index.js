@@ -12,6 +12,7 @@ if ((weex && weex.requireModule) || typeof(__weex_define__) === 'function') {
 	const device = require('./device')
 	const Navigator = require('./navigator')
 	const alipay = require('./third-party/alipay')
+	const wechat = require('./third-party/wechat')
 
 	// camera
 	if (camera) {
@@ -82,6 +83,11 @@ if ((weex && weex.requireModule) || typeof(__weex_define__) === 'function') {
 	// alipay
 	if (alipay) {
 		Nat.alipay = alipay
+	}
+
+	// wechat
+	if (wechat) {
+		Nat.wechat = wechat
 	}
 
 }
