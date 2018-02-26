@@ -165,9 +165,47 @@ const Toast = (opts, cb) => {
 	})
 }
 
+const actionSheet = {
+	show(opts, cb) {
+		return new Promise((resolve, reject) => {
+			opts = opts || {}
+
+			if (!Array.isArray(opts.options) || !opts.options.length) {
+				reject({
+					code: 145050,
+					message: 'ACTIONSHEET_INVALID_ARGUMENT'
+				})
+				return
+			}
+
+			const options = opts.options.map((item) => {
+				if (['string', 'number'].includes(typeof item)) {
+					return {
+						title: item
+					}
+				}
+				return item
+			})
+
+			if (isNative) {
+				modal.showActionSheet({
+					title: opts.title,
+					options
+				}, (ret) => {
+					resolve(ret)
+					if (typeof cb === 'function') cb(null, ret)
+				})
+			} else {
+				resolve()
+			}
+		})
+	}
+}
+
 module.exports = {
 	alert: Alert,
 	confirm: Confirm,
 	prompt: Prompt,
-	toast: Toast
+	toast: Toast,
+	actionSheet
 }
