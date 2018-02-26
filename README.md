@@ -10,6 +10,7 @@ Next generation mobile framework for building native / hybrid apps.
 - [Website](http://natjs.com/)
 - [Github](https://github.com/natjs/)
 - [Issues](https://github.com/natjs/nat/issues)
+- [中文文档](http://natjs.com/#/zh-cn/)
 
 ## Documentation
 To check out docs and examples, visit [natjs.com](http://natjs.com/).
