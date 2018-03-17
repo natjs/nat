@@ -89,6 +89,7 @@ Nat.device.info((err, ret) => {
     - battery
 - third-party
     - alipay
+    - wechat
 
 ## Supported Platforms
 
@@ -98,4 +99,5 @@ Nat.device.info((err, ret) => {
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
+
 Copyright (c) 2017-present, [Acathur](https://github.com/Acathur)
